@@ -29,7 +29,6 @@ const QuranUI = {
       </div>
       <div class="note">اضغط على رقم الآية لعرض التفسير. ${GULF_TAFSIR[num]?"الشرح الخليجي متوفر لهذه السورة.":"الشرح الخليجي غير متوفر لهذه السورة بعد — سيُعرض التفسير الميسّر."}</div>
       <div id="qtext"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-      <div id="tafsirSlot"></div>
       <div style="display:flex;gap:10px;margin-top:16px">
         ${num>1?`<button class="btn ghost" style="flex:1" onclick="QuranUI.read(${num-1})">→ السابقة</button>`:""}
         ${num<114?`<button class="btn ghost" style="flex:1" onclick="QuranUI.read(${num+1})">التالية ←</button>`:""}
@@ -58,13 +57,28 @@ const QuranUI = {
   get _cur(){ const h=document.querySelector(".book-head h2"); const m=h&&h.textContent.match(/سورة (.+)/); const s=SUWAR.find(x=>x[1]===m?.[1]); return s?s[0]:null; },
 
   async tafsir(sura, aya, el){
-    const slot=$("#tafsirSlot");
     document.querySelectorAll(".ayah-num").forEach(x=>x.style.background="");
     if(el) el.style.background="var(--gold)";
     const mode = (this.tafsirMode==="gulf" && GULF_TAFSIR[sura]) ? "gulf" : "muyassar";
     const title = mode==="gulf" ? "شرح مبسّط باللهجة الخليجية" : "التفسير الميسّر";
-    slot.innerHTML = `<div class="tafsir-box"><h5>${title} — الآية ${aya}</h5><div class="skel"></div><div class="skel"></div></div>`;
-    slot.scrollIntoView({behavior:"smooth", block:"nearest"});
+    const heading = `${title} — سورة ${SUWAR[sura-1][1]}، الآية ${aya}`;
+    // Bottom-sheet modal: user stays at their reading position, no jump to end of surah.
+    let ov = document.getElementById("tafsirOverlay");
+    if(!ov){
+      ov = document.createElement("div");
+      ov.id = "tafsirOverlay";
+      ov.className = "tafsir-overlay";
+      ov.innerHTML = `<div class="tafsir-sheet" role="dialog" aria-modal="true">
+        <div class="tafsir-sheet-head"><h5 id="tafsirTitle"></h5>
+        <button class="tafsir-close" aria-label="إغلاق">✕</button></div>
+        <div class="tafsir-sheet-body" id="tafsirBody"></div></div>`;
+      document.body.appendChild(ov);
+      ov.querySelector(".tafsir-close").onclick = ()=>ov.classList.remove("open");
+      ov.addEventListener("click", e=>{ if(e.target===ov) ov.classList.remove("open"); });
+    }
+    ov.querySelector("#tafsirTitle").textContent = heading;
+    ov.querySelector("#tafsirBody").innerHTML = `<div class="skel"></div><div class="skel"></div><div class="skel"></div>`;
+    requestAnimationFrame(()=>ov.classList.add("open"));
     try{
       let txt;
       if(mode==="gulf"){
@@ -79,9 +93,9 @@ const QuranUI = {
           this.tafsirCache[key]=txt;
         } else txt=this.tafsirCache[key];
       }
-      slot.innerHTML = `<div class="tafsir-box"><h5>${title} — سورة ${SUWAR[sura-1][1]}، الآية ${aya}</h5><p>${esc(txt)}</p></div>`;
+      ov.querySelector("#tafsirBody").innerHTML = `<p>${esc(txt)}</p>`;
     }catch(e){
-      slot.innerHTML = `<div class="tafsir-box"><h5>${title}</h5><p class="note">تعذّر تحميل التفسير. تحقق من الاتصال وحاول مجدداً.</p></div>`;
+      ov.querySelector("#tafsirBody").innerHTML = `<p class="note">تعذّر تحميل التفسير. تحقق من الاتصال وحاول مجدداً.</p>`;
     }
   }
 };

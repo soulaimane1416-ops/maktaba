@@ -175,3 +175,26 @@ body{
 .kbd{font-size:.75rem;background:var(--bg3);padding:2px 8px;border-radius:6px;border:1px solid var(--gold-dim)}
 @media(min-width:600px){.app-main,.header-inner{max-width:560px}}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:8px}
+
+/* ===== Tafsir bottom sheet ===== */
+.tafsir-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.tafsir-overlay.open{opacity:1;pointer-events:auto}
+.tafsir-sheet{background:var(--card);border:1px solid var(--gold-dim);border-bottom:none;
+  border-radius:22px 22px 0 0;width:100%;max-width:560px;max-height:78vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(40px);transition:transform .28s ease;box-shadow:var(--shadow)}
+.tafsir-overlay.open .tafsir-sheet{transform:translateY(0)}
+.tafsir-sheet-head{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;border-bottom:1px solid var(--gold-dim);flex-shrink:0}
+.tafsir-sheet-head h5{color:var(--gold2);font-size:.95rem;margin:0}
+.tafsir-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold-dim);
+  background:var(--bg3);color:var(--ink);font-size:1.1rem;cursor:pointer;line-height:1;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-ui)}
+.tafsir-sheet-body{padding:18px;overflow-y:auto;font-size:.92rem;line-height:2.1;color:var(--ink-dim)}
+.tafsir-sheet-body .skel{height:14px;border-radius:7px;margin:10px 0;
+  background:linear-gradient(90deg,var(--gold-dim),var(--bg3),var(--gold-dim));
+  background-size:200% 100%;animation:shimmer 1.2s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
