@@ -1,5 +1,5 @@
 /* Service Worker — مكتبة الطالب الإسلامية (أوفلاين كامل) */
-const CACHE = "maktaba-v3";
+const CACHE = "maktaba-v4";
 const SHELL = ["./","./index.html","./styles.css","./manifest.json",
  "js/app.js","js/quran.js","js/quran-mushaf.js","js/quran-tadabbur.js",
  "js/data-suwar.js","js/data-local.js","js/data-gulf.js","js/data-gulf-b.js",
