@@ -3,7 +3,8 @@ const MushafUI = {
   chapters: null, pageCache: {},
   cur: 1, sura: 1,
 
-  ar(n){ return String(n).replace(/\d/g, d=>"٠١٢٣٤٥٦٧٨٩"[d]); },
+  ar(n){ return String(n); }, // أرقام غربية حسب طلب المستخدم
+  wd(s){ return String(s).replace(/[٠-٩]/g, d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)); }, // تحويل الأرقام المشرقية للغربية
 
   async ensureChapters(){
     if(this.chapters) return this.chapters;
@@ -106,7 +107,7 @@ const MushafUI = {
       let line = "";
       for(const t of toks){
         if(t.end){
-          line += `<span class="mushaf-ayah" onclick="QuranUI.tafsir(${t.sid},${t.vnum},this)">${esc(t.num)}</span> `;
+          line += `<span class="mushaf-ayah" onclick="QuranUI.tafsir(${t.sid},${t.vnum},this)">${esc(this.wd(t.num))}</span> `;
         }else{
           line += `${esc(t.t)} `;
         }
