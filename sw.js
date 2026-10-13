@@ -1,7 +1,7 @@
 /* Service Worker — مكتبة الطالب الإسلامية */
-const CACHE = "maktaba-v1";
+const CACHE = "maktaba-v2";
 const SHELL = ["./","./index.html","./styles.css","./manifest.json",
- "js/app.js","js/quran.js","js/data-suwar.js","js/data-gulf.js","js/data-books.js","js/data-quiz.js",
+ "js/app.js","js/quran.js","js/quran-mushaf.js","js/quran-tadabbur.js","js/data-suwar.js","js/data-gulf.js","js/data-books.js","js/data-quiz.js",
  "icons/icon-192.png","icons/icon-512.png"];
 
 self.addEventListener("install", e=>{
