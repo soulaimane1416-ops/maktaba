@@ -6,7 +6,7 @@ const QuranUI = {
   list(filter=""){
     const q = filter.trim();
     const rows = SUWAR.filter(s=>!q || s[1].includes(q) || String(s[0])===q).map(s=>`
-      <div class="list-item" onclick="MushafUI.openSura(${s[0]})">
+      <div class="list-item" onclick="TadabburUI.open(${s[0]})">
         <div class="num">${s[0]}</div>
         <div class="meta"><h4>سورة ${s[1]}</h4><small>${s[2]} آيات • ${s[3]}ة</small></div>
         <div class="chev">‹</div>
