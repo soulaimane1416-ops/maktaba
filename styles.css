@@ -1,4 +1,15 @@
 /* ===== مكتبة الطالب الإسلامية — Advanced Theme ===== */
+/* خطوط محلية — تعمل أوفلاين */
+@font-face{font-family:'Amiri Quran';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/amiri-quran-400.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Aref Ruqaa';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/aref-ruqaa-400.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Aref Ruqaa';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/aref-ruqaa-700.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/tajawal-400.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/tajawal-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/tajawal-700.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/tajawal-700-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/tajawal-800.woff2') format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Tajawal';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/tajawal-800-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
 :root{
   --bg:#0a2e23; --bg2:#0d3a2c; --bg3:#10493a;
   --card:#10382c; --card2:#14503d;
@@ -252,3 +263,74 @@ body{
   background-size:200% 100%;animation:shimmer 1.2s infinite}
 .tad-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0 4px}
 .tad-count{color:var(--gold2);font-weight:800;font-size:.9rem;white-space:nowrap}
+
+/* ===== لمسات جمالية وحركات — v3 ===== */
+@keyframes riseIn{from{opacity:0;transform:translateY(18px) scale(.995)}to{opacity:1;transform:none}}
+@keyframes popIn{0%{opacity:0;transform:scale(.92)}60%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
+@keyframes glowPulse{0%,100%{text-shadow:0 0 12px rgba(212,175,55,.25)}50%{text-shadow:0 0 26px rgba(212,175,55,.55)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px) rotateX(4deg)}to{opacity:1;transform:none}}
+@keyframes shimmerGold{to{background-position:-200% 0}}
+@keyframes ringPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.45)}100%{box-shadow:0 0 0 14px rgba(212,175,55,0)}}
+
+/* دخول متدرج لعناصر القوائم */
+.list-item{animation:riseIn .5s cubic-bezier(.2,.8,.25,1) backwards}
+.list-item:nth-child(1){animation-delay:.02s}.list-item:nth-child(2){animation-delay:.06s}
+.list-item:nth-child(3){animation-delay:.1s}.list-item:nth-child(4){animation-delay:.14s}
+.list-item:nth-child(5){animation-delay:.18s}.list-item:nth-child(6){animation-delay:.22s}
+.list-item:nth-child(7){animation-delay:.26s}.list-item:nth-child(8){animation-delay:.3s}
+.list-item:nth-child(n+9){animation-delay:.34s}
+.list-item:active{transform:scale(.985)}
+
+/* بطاقات الكتب */
+.book-card{transition:transform .25s,box-shadow .25s,border-color .25s;animation:riseIn .5s backwards}
+.book-card:nth-child(2){animation-delay:.07s}.book-card:nth-child(3){animation-delay:.14s}
+.book-card:nth-child(4){animation-delay:.21s}.book-card:nth-child(n+5){animation-delay:.28s}
+.book-card:active{transform:translateY(2px) scale(.99)}
+@media(hover:hover){.book-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.4);border-color:var(--gold)}}
+
+/* آيات التدبر تدخل بتدرج */
+.tad-verse{animation:riseIn .55s cubic-bezier(.2,.8,.25,1) backwards}
+.tad-verse:nth-child(1){animation-delay:.03s}.tad-verse:nth-child(2){animation-delay:.08s}
+.tad-verse:nth-child(3){animation-delay:.13s}.tad-verse:nth-child(4){animation-delay:.18s}
+.tad-verse:nth-child(5){animation-delay:.23s}.tad-verse:nth-child(n+6){animation-delay:.28s}
+
+/* صفحة المصحف */
+.mushaf-page{animation:pageIn .5s cubic-bezier(.2,.8,.25,1);transform-origin:top center}
+.mushaf-ayah{transition:transform .15s,background .15s}
+.mushaf-ayah:active{transform:scale(1.25)}
+
+/* عناوين ذهبية متوهجة */
+.book-head h2,.tad-title,.hero h2{animation:glowPulse 4s ease-in-out infinite}
+.ornament{display:inline-block;animation:floatY 3.5s ease-in-out infinite}
+
+/* أزرار */
+.btn,.toggle,.tad-fbtn,.back-btn{transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active,.toggle:active,.tad-fbtn:active,.back-btn:active{transform:scale(.93)}
+.toggle.active{animation:ringPulse 1.6s ease-out infinite}
+
+/* شريط التبويبات */
+.tab{transition:color .25s,transform .2s;position:relative}
+.tab.active{animation:popIn .35s}
+.tab:active{transform:scale(.92)}
+
+/* النافذة السفلية للتفسير */
+.tafsir-sheet{animation:riseIn .35s cubic-bezier(.2,.8,.25,1)}
+
+/* تمييز التفسير داخل النص */
+.tafsir-hl{background:linear-gradient(120deg,transparent 0%,var(--gold-dim) 20%,var(--gold-dim) 80%,transparent 100%);
+  background-size:200% 100%;animation:shimmerGold 2.5s linear infinite;
+  color:var(--gold2);font-weight:700;border-radius:6px;padding:0 6px}
+
+/* بطاقة الحديث */
+.hadith{animation:riseIn .5s backwards}
+.hadith .ref{display:inline-block;margin-top:6px;font-size:.75rem;color:var(--gold2);
+  border:1px solid var(--gold-dim);border-radius:20px;padding:2px 10px;background:var(--gold-dim)}
+
+/* انتقال ناعم بين الوضعين */
+body{transition:background .4s,color .4s}
+
+/* تقليل الحركة لمن يفضل ذلك */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}

@@ -1,7 +1,14 @@
-/* Service Worker — مكتبة الطالب الإسلامية */
-const CACHE = "maktaba-v2";
+/* Service Worker — مكتبة الطالب الإسلامية (أوفلاين كامل) */
+const CACHE = "maktaba-v3";
 const SHELL = ["./","./index.html","./styles.css","./manifest.json",
- "js/app.js","js/quran.js","js/quran-mushaf.js","js/quran-tadabbur.js","js/data-suwar.js","js/data-gulf.js","js/data-books.js","js/data-quiz.js",
+ "js/app.js","js/quran.js","js/quran-mushaf.js","js/quran-tadabbur.js",
+ "js/data-suwar.js","js/data-local.js","js/data-gulf.js","js/data-gulf-b.js",
+ "js/data-books.js","js/data-bukhari.js","js/data-fiqh.js","js/data-quiz.js",
+ "data/quran.json","data/tafsir.json","data/mushaf.json",
+ "fonts/amiri-quran-400.woff2","fonts/aref-ruqaa-400.woff2","fonts/aref-ruqaa-700.woff2",
+ "fonts/tajawal-400.woff2","fonts/tajawal-400-latin.woff2",
+ "fonts/tajawal-700.woff2","fonts/tajawal-700-latin.woff2",
+ "fonts/tajawal-800.woff2","fonts/tajawal-800-latin.woff2",
  "icons/icon-192.png","icons/icon-512.png"];
 
 self.addEventListener("install", e=>{
@@ -12,11 +19,11 @@ self.addEventListener("activate", e=>{
 });
 self.addEventListener("fetch", e=>{
   const url = new URL(e.request.url);
-  // API calls: network-first with cache fallback
-  if(url.hostname.includes("jsdelivr.net") || url.hostname.includes("quran.com") || url.hostname.includes("gstatic.com") || url.hostname.includes("googleapis.com")){
-    e.respondWith(fetch(e.request).then(r=>{
+  // بيانات محلية: cache-first (لا تتغير)
+  if(url.pathname.includes("/data/") || url.pathname.includes("/fonts/")){
+    e.respondWith(caches.match(e.request).then(hit=>hit || fetch(e.request).then(r=>{
       const copy=r.clone(); caches.open(CACHE).then(c=>c.put(e.request,copy)); return r;
-    }).catch(()=>caches.match(e.request)));
+    })));
     return;
   }
   // App shell: cache-first

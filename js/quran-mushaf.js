@@ -8,10 +8,14 @@ const MushafUI = {
 
   async ensureChapters(){
     if(this.chapters) return this.chapters;
-    const r = await fetch("https://api.quran.com/api/v4/chapters?language=ar");
-    if(!r.ok) throw 0;
-    const j = await r.json();
-    this.chapters = j.chapters;
+    try{ // أوفلاين أولًا: من بيانات المصحف المحلية + أسماء السور
+      const fp = await LocalData.suraFirstPages();
+      this.chapters = SUWAR.map(s=>({name_arabic:s[1], pages:[fp[s[0]]||1]}));
+    }catch(e){
+      const r = await fetch("https://api.quran.com/api/v4/chapters?language=ar");
+      if(!r.ok) throw 0;
+      this.chapters = (await r.json()).chapters;
+    }
     return this.chapters;
   },
 
@@ -38,10 +42,12 @@ const MushafUI = {
       const ch = await this.ensureChapters();
       let verses = this.pageCache[p];
       if(!verses){
-        const r = await fetch(`https://api.quran.com/api/v4/verses/by_page/${p}?words=true&word_fields=text_uthmani,line_number,char_type_name&per_page=50`);
-        if(!r.ok) throw 0;
-        const j = await r.json();
-        verses = j.verses;
+        try{ verses = await LocalData.mushafPage(p); } // أوفلاين أولًا
+        catch(e){
+          const r = await fetch(`https://api.quran.com/api/v4/verses/by_page/${p}?words=true&word_fields=text_uthmani,line_number,char_type_name&per_page=50`);
+          if(!r.ok) throw 0;
+          verses = (await r.json()).verses;
+        }
         this.pageCache[p] = verses;
       }
       this.render(p, verses, ch);

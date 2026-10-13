@@ -35,10 +35,13 @@ const TadabburUI = {
     try{
       let verses = QuranUI.cache[num];
       if(!verses){
-        const r = await fetch(`${API_QURAN_TEXT}/${num}.json`);
-        if(!r.ok) throw 0;
-        const j = await r.json();
-        verses = j.chapter || j.verses || j;
+        try{ verses = await LocalData.suraText(num); } // أوفلاين أولًا
+        catch(e){
+          const r = await fetch(`${API_QURAN_TEXT}/${num}.json`);
+          if(!r.ok) throw 0;
+          const j = await r.json();
+          verses = j.chapter || j.verses || j;
+        }
         QuranUI.cache[num] = verses;
       }
       this.render(num, s, verses);

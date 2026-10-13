@@ -30,10 +30,13 @@ const QuranUI = {
     }
     const key=`${sura}:${aya}`;
     if(!this.tafsirCache[key]){
-      const r=await fetch(`${API_TAFSIR}/${sura}:${aya}`);
-      if(!r.ok) throw 0;
-      const j=await r.json();
-      txt=j.tafsir.text;
+      try{ txt = await LocalData.tafsir(sura, aya); } // أوفلاين أولًا
+      catch(e){
+        const r=await fetch(`${API_TAFSIR}/${sura}:${aya}`);
+        if(!r.ok) throw 0;
+        const j=await r.json();
+        txt=j.tafsir.text;
+      }
       this.tafsirCache[key]=txt;
     } else txt=this.tafsirCache[key];
     // الميسّر يجي من المصدر فيه وسوم HTML مثل <span class="green"> — نحوّلها لتمييز نظيف ونشيل الباقي
