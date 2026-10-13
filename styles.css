@@ -229,3 +229,26 @@ body{
   text-align:center;padding:10px 4px}
 .mushaf-pagenum{text-align:center;color:var(--ink-faint);font-size:.8rem;margin:10px 0 0}
 .tafsir-hl{color:var(--gold2);font-weight:800}
+
+/* ===== تدبر الآيات — آية آية مع تفسيرها ===== */
+.tad-wrap{--tad-scale:1;margin-top:6px}
+.tad-head{display:flex;align-items:center;justify-content:space-between;margin:4px 0 2px}
+.tad-title{font-size:1.25rem;font-weight:800;color:var(--gold2)}
+.tad-fontbtns{display:flex;gap:8px}
+.tad-fbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--gold-dim);
+  background:var(--card);color:var(--ink);font-weight:800;font-size:.95rem;cursor:pointer;
+  font-family:var(--font-ui);transition:.2s}
+.tad-fbtn:active{transform:scale(.94);background:var(--gold);color:#20342a}
+.tad-basmala{text-align:center;font-family:var(--font-quran);color:var(--gold2);
+  font-size:calc(1.35rem*var(--tad-scale));margin:10px 0 4px;line-height:2}
+.tad-verse{padding:16px 2px;border-bottom:1px solid var(--gold-dim)}
+.tad-verse:last-of-type{border-bottom:none}
+.tad-text{font-family:var(--font-quran);font-size:calc(1.45rem*var(--tad-scale));
+  line-height:2.2;color:var(--ink);text-align:right;margin-bottom:8px}
+.tad-num{color:var(--gold2);font-family:var(--font-ui);font-size:.85em;white-space:nowrap}
+.tad-tafsir{font-size:calc(.92rem*var(--tad-scale));line-height:2;color:var(--ink-dim)}
+.tad-tafsir .skel{height:12px;border-radius:6px;margin:8px 0;
+  background:linear-gradient(90deg,var(--gold-dim),var(--bg3),var(--gold-dim));
+  background-size:200% 100%;animation:shimmer 1.2s infinite}
+.tad-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0 4px}
+.tad-count{color:var(--gold2);font-weight:800;font-size:.9rem;white-space:nowrap}

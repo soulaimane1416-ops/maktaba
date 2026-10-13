@@ -125,7 +125,7 @@ const MushafUI = {
     <p class="mushaf-pagenum">صفحة ${this.ar(p)} من ${this.ar(604)}</p>
     <div class="toggle-row">
       <button class="toggle active">مصحف المدينة</button>
-      <button class="toggle" onclick="QuranUI.read(${this.sura})">نص متواصل</button>
+      <button class="toggle" onclick="TadabburUI.open(${this.sura})">تدبر الآيات</button>
     </div>`;
 
     app.innerHTML = `<div class="view">

@@ -18,47 +18,27 @@ const QuranUI = {
     const inp=$("#sq"); if(inp && q){ inp.focus(); inp.setSelectionRange(inp.value.length,inp.value.length); }
   },
 
-  async read(num){
-    const s = SUWAR[num-1];
-    app.innerHTML = `<div class="view">
-      <button class="back-btn" onclick="QuranUI.list()">→ قائمة السور</button>
-      <div class="book-head"><h2>سورة ${s[1]}</h2><p>${s[2]} آيات • ${s[3]}ة</p></div>
-      <div class="toggle-row">
-        <button class="toggle active">نص متواصل</button>
-        <button class="toggle" onclick="MushafUI.openSura(${num})">مصحف المدينة</button>
-      </div>
-      <div class="toggle-row">
-        <button class="toggle ${this.tafsirMode==="muyassar"?"active":""}" onclick="QuranUI.setMode('muyassar')">التفسير الميسّر</button>
-        <button class="toggle ${this.tafsirMode==="gulf"?"active":""}" onclick="QuranUI.setMode('gulf')">شرح مبسّط خليجي</button>
-      </div>
-      <div class="note">اضغط على رقم الآية لعرض التفسير. ${GULF_TAFSIR[num]?"الشرح الخليجي متوفر لهذه السورة.":"الشرح الخليجي غير متوفر لهذه السورة بعد — سيُعرض التفسير الميسّر."}</div>
-      <div id="qtext"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        ${num>1?`<button class="btn ghost" style="flex:1" onclick="QuranUI.read(${num-1})">→ السابقة</button>`:""}
-        ${num<114?`<button class="btn ghost" style="flex:1" onclick="QuranUI.read(${num+1})">التالية ←</button>`:""}
-      </div></div>`;
-    window.scrollTo({top:0});
-    try{
-      let verses = this.cache[num];
-      if(!verses){
-        const r = await fetch(`${API_QURAN_TEXT}/${num}.json`);
-        if(!r.ok) throw 0;
-        const j = await r.json();
-        verses = j.chapter || j.verses || j;
-        this.cache[num]=verses;
-      }
-      const html = verses.map(v=>{
-        const a = v.verse ?? v.verse_number, t = v.text;
-        return `<span class="ayah">${t}<span class="ayah-num" onclick="QuranUI.tafsir(${num},${a},this)">﴿${a}﴾</span></span> `;
-      }).join("");
-      $("#qtext").innerHTML = `<div class="quran-text">${num!==1&&num!==9?'<p style="text-align:center;margin-bottom:14px">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>':""}${html}</div>`;
-    }catch(e){
-      $("#qtext").innerHTML = `<p class="note">تعذّر تحميل نص السورة. تحقق من الاتصال بالإنترنت وحاول مجدداً.</p>`;
-    }
-  },
 
-  setMode(m){ this.tafsirMode=m; const n=this._cur; if(n) this.read(n); },
-  get _cur(){ const h=document.querySelector(".book-head h2"); const m=h&&h.textContent.match(/سورة (.+)/); const s=SUWAR.find(x=>x[1]===m?.[1]); return s?s[0]:null; },
+  /* جلب نص التفسير لآية — مشترك بين النافذة المنبثقة وعرض التدبر */
+  async getTafsirText(sura, aya){
+    const mode = (this.tafsirMode==="gulf" && GULF_TAFSIR[sura]) ? "gulf" : "muyassar";
+    const title = mode==="gulf" ? "شرح مبسّط باللهجة الخليجية" : "التفسير الميسّر";
+    let txt;
+    if(mode==="gulf"){
+      txt = GULF_TAFSIR[sura][String(aya)] || "الشرح غير متوفر لهذه الآية بعد.";
+      return {mode, title, html: esc(txt)};
+    }
+    const key=`${sura}:${aya}`;
+    if(!this.tafsirCache[key]){
+      const r=await fetch(`${API_TAFSIR}/${sura}:${aya}`);
+      if(!r.ok) throw 0;
+      const j=await r.json();
+      txt=j.tafsir.text;
+      this.tafsirCache[key]=txt;
+    } else txt=this.tafsirCache[key];
+    // الميسّر يجي من المصدر فيه وسوم HTML مثل <span class="green"> — نحوّلها لتمييز نظيف ونشيل الباقي
+    return {mode, title, html: cleanTafsir(txt)};
+  },
 
   async tafsir(sura, aya, el){
     document.querySelectorAll(".ayah-num").forEach(x=>x.style.background="");
@@ -84,21 +64,8 @@ const QuranUI = {
     ov.querySelector("#tafsirBody").innerHTML = `<div class="skel"></div><div class="skel"></div><div class="skel"></div>`;
     requestAnimationFrame(()=>ov.classList.add("open"));
     try{
-      let txt;
-      if(mode==="gulf"){
-        txt = GULF_TAFSIR[sura][String(aya)] || "الشرح غير متوفر لهذه الآية بعد.";
-      }else{
-        const key=`${sura}:${aya}`;
-        if(!this.tafsirCache[key]){
-          const r=await fetch(`${API_TAFSIR}/${sura}:${aya}`);
-          if(!r.ok) throw 0;
-          const j=await r.json();
-          txt=j.tafsir.text;
-          this.tafsirCache[key]=txt;
-        } else txt=this.tafsirCache[key];
-      }
-      // الميسّر يجي من المصدر فيه وسوم HTML مثل <span class="green"> — نحوّلها لتمييز نظيف ونشيل الباقي
-      const body = mode==="gulf" ? `<p>${esc(txt)}</p>` : `<p>${cleanTafsir(txt)}</p>`;
+      const {mode, html} = await this.getTafsirText(sura, aya);
+      const body = `<p>${html}</p>`;
       ov.querySelector("#tafsirBody").innerHTML = body;
     }catch(e){
       ov.querySelector("#tafsirBody").innerHTML = `<p class="note">تعذّر تحميل التفسير. تحقق من الاتصال وحاول مجدداً.</p>`;
