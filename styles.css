@@ -180,6 +180,8 @@ body{
 .tafsir-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);
   backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
   display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:32px;
+  padding-bottom:env(safe-area-inset-bottom,32px);
   opacity:0;pointer-events:none;transition:opacity .25s}
 .tafsir-overlay.open{opacity:1;pointer-events:auto}
 .tafsir-sheet{background:var(--card);border:1px solid var(--gold-dim);border-bottom:none;
@@ -198,3 +200,31 @@ body{
   background:linear-gradient(90deg,var(--gold-dim),var(--bg3),var(--gold-dim));
   background-size:200% 100%;animation:shimmer 1.2s infinite}
 @keyframes shimmer{to{background-position:-200% 0}}
+
+/* ===== مصحف المدينة — صفحة ورقية ===== */
+.mushaf-wrap{margin-top:6px}
+.mushaf-info{display:flex;justify-content:space-between;align-items:center;
+  padding:6px 4px;color:var(--ink-faint);font-size:.82rem;font-weight:700}
+.mushaf-page{background:#fbf7ea;border:1px solid #d8cfae;border-radius:14px;
+  padding:18px 14px;box-shadow:var(--shadow);color:#1c1a14}
+.mushaf-sura-head{display:flex;align-items:center;justify-content:center;gap:12px;
+  border:2px solid #1e7a4c;border-radius:10px;margin:10px 0;padding:8px;
+  background:linear-gradient(180deg,#f4efdc,#ece4c8)}
+.mushaf-sura-head .nm{font-family:var(--font-head);font-size:1.35rem;color:#14532d;font-weight:700}
+.mushaf-sura-head .orn{color:#1e7a4c;font-size:1.1rem}
+.mushaf-basmala{text-align:center;font-family:var(--font-quran);font-size:1.45rem;
+  color:#1c1a14;margin:6px 0 10px;line-height:2}
+.mushaf-line{font-family:var(--font-quran);font-size:1.5rem;line-height:2.25;color:#14120c;
+  text-align:justify;text-align-last:justify;word-spacing:1px}
+.mushaf-ayah{display:inline-block;min-width:1.9em;height:1.9em;line-height:1.9em;text-align:center;
+  font-size:.62em;border:1.6px solid #1e7a4c;border-radius:50%;color:#14532d;
+  margin:0 .35em;font-family:var(--font-ui);font-weight:700;cursor:pointer;
+  vertical-align:baseline;transition:.2s}
+.mushaf-ayah:hover{background:#1e7a4c;color:#fff}
+.mushaf-nav{display:flex;gap:8px;margin-top:14px;align-items:stretch}
+.mushaf-nav .btn{flex:1}
+.mushaf-jump{display:flex;gap:6px;flex:1.4}
+.mushaf-jump input{width:100%;min-width:0;border-radius:12px;border:1px solid var(--gold-dim);
+  background:var(--card);color:var(--ink);font-family:var(--font-ui);font-size:.9rem;
+  text-align:center;padding:10px 4px}
+.mushaf-pagenum{text-align:center;color:var(--ink-faint);font-size:.8rem;margin:10px 0 0}

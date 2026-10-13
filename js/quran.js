@@ -6,7 +6,7 @@ const QuranUI = {
   list(filter=""){
     const q = filter.trim();
     const rows = SUWAR.filter(s=>!q || s[1].includes(q) || String(s[0])===q).map(s=>`
-      <div class="list-item" onclick="QuranUI.read(${s[0]})">
+      <div class="list-item" onclick="MushafUI.openSura(${s[0]})">
         <div class="num">${s[0]}</div>
         <div class="meta"><h4>سورة ${s[1]}</h4><small>${s[2]} آيات • ${s[3]}ة</small></div>
         <div class="chev">‹</div>
@@ -23,6 +23,10 @@ const QuranUI = {
     app.innerHTML = `<div class="view">
       <button class="back-btn" onclick="QuranUI.list()">→ قائمة السور</button>
       <div class="book-head"><h2>سورة ${s[1]}</h2><p>${s[2]} آيات • ${s[3]}ة</p></div>
+      <div class="toggle-row">
+        <button class="toggle active">نص متواصل</button>
+        <button class="toggle" onclick="MushafUI.openSura(${num})">مصحف المدينة</button>
+      </div>
       <div class="toggle-row">
         <button class="toggle ${this.tafsirMode==="muyassar"?"active":""}" onclick="QuranUI.setMode('muyassar')">التفسير الميسّر</button>
         <button class="toggle ${this.tafsirMode==="gulf"?"active":""}" onclick="QuranUI.setMode('gulf')">شرح مبسّط خليجي</button>
