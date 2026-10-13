@@ -924,3 +924,5 @@ Object.assign(GULF_TAFSIR, {
  "50":"فبأي حديث بعد القرآن يؤمنون؟"
 }
 });
+/* تحديث قائمة السور بعد الدمج */
+Object.assign(GULF_SURAHS, Object.keys(GULF_TAFSIR));
