@@ -97,7 +97,9 @@ const QuranUI = {
           this.tafsirCache[key]=txt;
         } else txt=this.tafsirCache[key];
       }
-      ov.querySelector("#tafsirBody").innerHTML = `<p>${esc(txt)}</p>`;
+      // الميسّر يجي من المصدر فيه وسوم HTML مثل <span class="green"> — نحوّلها لتمييز نظيف ونشيل الباقي
+      const body = mode==="gulf" ? `<p>${esc(txt)}</p>` : `<p>${cleanTafsir(txt)}</p>`;
+      ov.querySelector("#tafsirBody").innerHTML = body;
     }catch(e){
       ov.querySelector("#tafsirBody").innerHTML = `<p class="note">تعذّر تحميل التفسير. تحقق من الاتصال وحاول مجدداً.</p>`;
     }

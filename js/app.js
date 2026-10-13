@@ -4,6 +4,14 @@ const app = $("#app");
 
 function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
 function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+/* تنظيف نص التفسير من وسوم HTML مع إبقاء تمييز الكلمات بلون مميز */
+function cleanTafsir(t){
+  return String(t)
+    .replace(/<span[^>]*>/gi, '<b class="tafsir-hl">')
+    .replace(/<\/span>/gi, '</b>')
+    .replace(/<sup[^>]*>[\s\S]*?<\/sup>/gi, '')
+    .replace(/<(?!\/?b[ >])[^>]*>/gi, '');
+}
 
 /* ---------- Theme ---------- */
 function initTheme(){

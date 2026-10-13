@@ -228,3 +228,4 @@ body{
   background:var(--card);color:var(--ink);font-family:var(--font-ui);font-size:.9rem;
   text-align:center;padding:10px 4px}
 .mushaf-pagenum{text-align:center;color:var(--ink-faint);font-size:.8rem;margin:10px 0 0}
+.tafsir-hl{color:var(--gold2);font-weight:800}
