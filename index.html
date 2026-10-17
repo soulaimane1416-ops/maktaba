@@ -22,8 +22,10 @@
         <p>الإسلامية لطلب العلم</p>
       </div>
     </div>
-    <button id="installBtn" class="icon-btn" aria-label="تحميل التطبيق" title="تحميل التطبيق" hidden><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر">☾</button>
+    <div class="header-actions">
+      <button id="installBtn" class="install-pill">📲 حمّل التطبيق</button>
+      <button id="themeBtn" class="icon-btn" aria-label="تبديل المظهر">☾</button>
+    </div>
   </div>
 </header>
 
@@ -51,6 +53,12 @@
     <span>الاختبار</span>
   </button>
 </nav>
+
+<div id="installBanner" class="install-banner" hidden>
+  <button id="installBannerClose" class="install-banner-x" aria-label="إغلاق">✕</button>
+  <button id="installBannerBtn" class="install-pill">تثبيت</button>
+  <p>📲 ثبّت تطبيق مكتبة الطالب على جوالك لوصول أسرع</p>
+</div>
 
 <div id="toast" class="toast" role="status"></div>
 

@@ -165,36 +165,47 @@ const QuizUI = {
 
 /* ---------- PWA install ---------- */
 let deferredPrompt=null;
-const installBtnEl=()=>document.getElementById("installBtn");
-function showInstallBtn(){ const b=installBtnEl(); if(b) b.hidden=false; }
+function showInstallBanner(){
+  try{ if(localStorage.getItem("mt-install-dismissed")==="1") return; }catch(_){}
+  const standalone=window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  if(standalone) return;
+  const b=document.getElementById("installBanner");
+  if(b) b.hidden=false;
+}
+function hideInstallBanner(){ const b=document.getElementById("installBanner"); if(b) b.hidden=true; }
 window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
   deferredPrompt=e;
-  showInstallBtn();
+  showInstallBanner();
 });
 window.addEventListener("appinstalled",()=>{
   deferredPrompt=null;
-  const b=installBtnEl(); if(b) b.hidden=true;
+  hideInstallBanner();
   toast("تم تثبيت التطبيق بنجاح");
 });
+async function doInstall(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const {outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    hideInstallBanner();
+    if(outcome!=="accepted"){
+      toast("للتثبيت لاحقًا: من قائمة كروم ⋮ اختر «تثبيت التطبيق»");
+    }
+  }else{
+    toast("من قائمة كروم ⋮ اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»");
+  }
+}
 (function(){
+  document.getElementById("installBtn").addEventListener("click",doInstall);
+  document.getElementById("installBannerBtn").addEventListener("click",doInstall);
+  document.getElementById("installBannerClose").addEventListener("click",()=>{
+    hideInstallBanner();
+    try{ localStorage.setItem("mt-install-dismissed","1"); }catch(_){}
+  });
   const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
   const standalone=window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-  if(isIOS&&!standalone) showInstallBtn();
-  const b=installBtnEl();
-  if(b) b.addEventListener("click",async()=>{
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      const {outcome}=await deferredPrompt.userChoice;
-      deferredPrompt=null;
-      b.hidden=true;
-      if(outcome!=="accepted"){
-        toast("للتثبيت لاحقًا: من قائمة كروم ⋮ اختر «تثبيت التطبيق»");
-      }
-    }else{
-      toast("من قائمة كروم ⋮ اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»");
-    }
-  });
+  if(isIOS&&!standalone) showInstallBanner();
 })();
 
 /* ---------- Boot ---------- */
