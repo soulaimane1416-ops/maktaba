@@ -186,9 +186,13 @@ window.addEventListener("appinstalled",()=>{
     if(deferredPrompt){
       deferredPrompt.prompt();
       const {outcome}=await deferredPrompt.userChoice;
-      if(outcome==="accepted"){ deferredPrompt=null; b.hidden=true; }
+      deferredPrompt=null;
+      b.hidden=true;
+      if(outcome!=="accepted"){
+        toast("للتثبيت لاحقًا: من قائمة كروم ⋮ اختر «تثبيت التطبيق»");
+      }
     }else{
-      toast("من زر المشاركة اختر «إضافة إلى الشاشة الرئيسية»");
+      toast("من قائمة كروم ⋮ اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»");
     }
   });
 })();
