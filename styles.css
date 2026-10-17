@@ -57,6 +57,8 @@ body{
 .icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold-dim);
   background:var(--card);color:var(--gold2);font-size:1.1rem;cursor:pointer;transition:.25s}
 .icon-btn:hover{transform:rotate(20deg);border-color:var(--gold)}
+#installBtn{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(212,175,55,.35);animation:installGlow 2.2s ease-in-out infinite}
+@keyframes installGlow{0%,100%{box-shadow:0 0 8px rgba(212,175,55,.25)}50%{box-shadow:0 0 18px rgba(212,175,55,.55)}}
 
 /* ===== Layout ===== */
 .app-main{max-width:520px;margin:0 auto;padding:18px 16px 110px;min-height:70vh}

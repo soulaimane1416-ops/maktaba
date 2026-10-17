@@ -163,6 +163,36 @@ const QuizUI = {
   }
 };
 
+/* ---------- PWA install ---------- */
+let deferredPrompt=null;
+const installBtnEl=()=>document.getElementById("installBtn");
+function showInstallBtn(){ const b=installBtnEl(); if(b) b.hidden=false; }
+window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  showInstallBtn();
+});
+window.addEventListener("appinstalled",()=>{
+  deferredPrompt=null;
+  const b=installBtnEl(); if(b) b.hidden=true;
+  toast("تم تثبيت التطبيق بنجاح");
+});
+(function(){
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const standalone=window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  if(isIOS&&!standalone) showInstallBtn();
+  const b=installBtnEl();
+  if(b) b.addEventListener("click",async()=>{
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      const {outcome}=await deferredPrompt.userChoice;
+      if(outcome==="accepted"){ deferredPrompt=null; b.hidden=true; }
+    }else{
+      toast("من زر المشاركة اختر «إضافة إلى الشاشة الرئيسية»");
+    }
+  });
+})();
+
 /* ---------- Boot ---------- */
 initTheme();
 renderHome();
